@@ -1,0 +1,57 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 150px;
+    font-size: 24px;
+}
+
+#terminal {
+    max-width: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+#menu {
+    margin-bottom: 40px;
+}
+
+.menu-item {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+#output {
+    white-space: pre-wrap;
+    border: 1px solid #fff;
+    padding: 10px;
+    min-height: 200px;
+    font-size: 20px;
+}
+
+pre {
+    white-space: pre-wrap;
+    font-size: 20px;
+}
+
+#spectrogram {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    height: 100px;
+    margin: 40px 0;
+}
+
+.bar {
+    width: 15px;
+    height: 20px;
+    background-color: #fff;
+    transition: height 0.1s;
+}

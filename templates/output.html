@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Output</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="terminal">
+        <h1>COMMAND OUTPUT</h1>
+        <p>Executed: {{ command }}</p>
+        <pre id="output">{{ output }}</pre>
+        <p><a href="/">Back to Menu</a></p>
+    </div>
+</body>
+</html>

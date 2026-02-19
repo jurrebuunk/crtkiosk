@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRT Kiosk Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="terminal">
+        <h1>CRT KIOSK MENU</h1>
+        <div id="menu">
+            <div class="menu-item selected" data-command="ls -la">List Files</div>
+            <div class="menu-item" data-command="date">Show Date</div>
+            <div class="menu-item" data-command="uptime">Show Uptime</div>
+            <div class="menu-item" data-command="uname -a">System Info</div>
+            <div class="menu-item" data-command="ip addr show">Network Info</div>
+            <div class="menu-item" data-command="df -h">Disk Usage</div>
+            <div class="menu-item" data-command="echo 'Hello from CRT Kiosk'">Hello World</div>
+            <div class="menu-item" data-command="ai">AI Assistant</div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
