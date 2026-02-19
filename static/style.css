@@ -3,8 +3,8 @@ body {
     color: #fff;
     font-family: 'Courier New', monospace;
     margin: 0;
-    padding: 150px;
-    font-size: 24px;
+    padding: 180px;
+    font-size: 48px;
 }
 
 #terminal {
@@ -13,7 +13,7 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 36px;
+    font-size: 52px;
     margin-bottom: 40px;
 }
 
@@ -22,36 +22,36 @@ h1 {
 }
 
 .menu-item {
-    padding: 10px;
-    margin: 5px 0;
+    padding: 22px 0;
+    margin: 10px 0;
     cursor: pointer;
 }
 
 #output {
     white-space: pre-wrap;
     border: 1px solid #fff;
-    padding: 10px;
-    min-height: 200px;
-    font-size: 20px;
+    padding: 24px;
+    min-height: 320px;
+    font-size: 36px;
 }
 
 pre {
     white-space: pre-wrap;
-    font-size: 20px;
+    font-size: 36px;
 }
 
 #spectrogram {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 15px;
-    height: 100px;
-    margin: 40px 0;
+    gap: 44px;
+    height: 360px;
+    margin: 80px 0;
 }
 
 .bar {
-    width: 15px;
-    height: 20px;
+    width: 56px;
+    height: 72px;
     background-color: #fff;
     transition: height 0.1s;
 }

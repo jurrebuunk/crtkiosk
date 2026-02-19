@@ -71,12 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('start-btn').addEventListener('click', function() {
-        if (!animating) {
-            recognition.start();
-        }
-    });
-
     function startAnimation() {
         animating = true;
         animateBars();
