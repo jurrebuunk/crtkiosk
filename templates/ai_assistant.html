@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Assistant</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <div id="terminal">
-        <h1>AI ASSISTANT</h1>
         <div id="spectrogram">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -18,7 +19,9 @@
         </div>
         <p id="status"></p>
         <div id="transcript"></div>
+        <div id="debug"></div>
     </div>
     <script src="{{ url_for('static', filename='ai_script.js') }}"></script>
 </body>
+
 </html>

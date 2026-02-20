@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import subprocess
+import asyncio
+from matrix_notifier import send_matrix_message
 
 app = Flask(__name__)
 
@@ -34,6 +36,20 @@ def run_command():
 @app.route('/ai_assistant')
 def ai_assistant():
     return render_template('ai_assistant.html')
+
+@app.route('/send_matrix', methods=['POST'])
+def send_matrix():
+    message = request.json.get('message')
+    if not message:
+        return jsonify({'error': 'No message provided'}), 400
+    
+    # Run the async send_matrix_message function
+    success = asyncio.run(send_matrix_message(message))
+    
+    if success:
+        return jsonify({'status': 'Message sent to Matrix'})
+    else:
+        return jsonify({'error': 'Failed to send message to Matrix'}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

@@ -46,12 +46,33 @@ pre {
     align-items: flex-end;
     gap: 44px;
     height: 360px;
-    margin: 80px 0;
+    margin: 50px 0 90px;
+}
+
+#transcript {
+    text-align: center;
+    margin-top: 20px;
+    min-height: 60px;
+}
+
+#status {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 40px;
+    color: #aaa;
+}
+
+#debug {
+    text-align: center;
+    font-size: 24px;
+    color: #0f0;
+    margin-top: 40px;
+    opacity: 0.7;
 }
 
 .bar {
     width: 56px;
     height: 72px;
     background-color: #fff;
-    transition: height 0.1s;
 }
