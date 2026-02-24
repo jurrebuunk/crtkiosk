@@ -87,8 +87,13 @@ pre {
     display: none; /* hidden by default */
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.7); /* darker backdrop */
     z-index: 9999;
+}
+
+/* move inner spectrogram slightly up from center */
+#ai-overlay .overlay-spectrogram {
+    transform: translateY(-10%);
 }
 
 #ai-overlay.active,
