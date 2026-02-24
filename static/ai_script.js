@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const statusEl = document.getElementById('status');
     const transcriptEl = document.getElementById('transcript');
     const debugEl = document.getElementById('debug');
-    const bars = document.querySelectorAll('.bar');
+    const bars = document.querySelectorAll('#spectrogram .bar');
     let recognition;
     let animating = false;
     let animationMode = 'listening'; // 'listening' or 'loading'
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
             lastTranscript = finalTranscript;
             console.log('Final Transcript:', finalTranscript);
 
-            // Send to Matrix
-            debugEl.textContent = 'Sending to Matrix...';
-            fetch('/send_matrix', {
+            // send to AI endpoint instead
+            debugEl.textContent = 'Querying AI...';
+            fetch('/ai', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,15 +59,16 @@ document.addEventListener('DOMContentLoaded', function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.status) {
-                        debugEl.textContent = 'Matrix: ' + data.status;
+                    if (data.text) {
+                        debugEl.textContent = 'AI response received';
+                        transcriptEl.textContent = data.text;
                     } else if (data.error) {
-                        debugEl.textContent = 'Matrix Error: ' + data.error;
+                        debugEl.textContent = 'AI Error: ' + data.error;
                     }
                 })
                 .catch(err => {
-                    console.error('Error sending to Matrix:', err);
-                    debugEl.textContent = 'Matrix Error: ' + err.message;
+                    console.error('Error querying AI:', err);
+                    debugEl.textContent = 'AI Error: ' + err.message;
                 });
 
             stopAnimation();

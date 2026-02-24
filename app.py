@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import subprocess
-import asyncio
-from matrix_notifier import send_matrix_message
+import json
+from ai_client import query_ai
 
 app = Flask(__name__)
 
@@ -37,19 +37,27 @@ def run_command():
 def ai_assistant():
     return render_template('ai_assistant.html')
 
-@app.route('/send_matrix', methods=['POST'])
-def send_matrix():
-    message = request.json.get('message')
+
+@app.route('/ai', methods=['POST'])
+def ai_query():
+    """Run the openclaw agent CLI with the provided message and return the AI response text."""
+    payload = request.json or {}
+    message = payload.get('message')
     if not message:
         return jsonify({'error': 'No message provided'}), 400
-    
-    # Run the async send_matrix_message function
-    success = asyncio.run(send_matrix_message(message))
-    
-    if success:
-        return jsonify({'status': 'Message sent to Matrix'})
-    else:
-        return jsonify({'error': 'Failed to send message to Matrix'}), 500
+    # construct command
+    cmd = [
+        'openclaw', 'agent', '--agent', 'main',
+        '--message', message,
+        '--deliver', '--reply-channel', 'matrix',
+        '--json', '--verbose', 'off'
+    ]
+    try:
+        text = query_ai(message)
+        return jsonify({'text': text})
+    except Exception as e:
+        # include error details for debugging
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

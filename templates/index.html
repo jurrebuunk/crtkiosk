@@ -19,5 +19,17 @@
         </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- AI overlay component -->
+    <div id="ai-overlay" class="hidden">
+        <div class="overlay-spectrogram">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='overlay.js') }}"></script>
 </body>
 </html>

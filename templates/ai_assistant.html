@@ -22,6 +22,18 @@
         <div id="debug"></div>
     </div>
     <script src="{{ url_for('static', filename='ai_script.js') }}"></script>
+
+    <!-- AI overlay component (works on all pages) -->
+    <div id="ai-overlay" class="hidden">
+        <div class="overlay-spectrogram">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='overlay.js') }}"></script>
 </body>
 
 </html>
