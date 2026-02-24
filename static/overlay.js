@@ -61,6 +61,37 @@ document.addEventListener('DOMContentLoaded', function() {
         animateBars();
     }
 
+    function speakText(text) {
+        if (!('speechSynthesis' in window)) {
+            setDebug('speechSynthesis unavailable');
+            return;
+        }
+        // cancel any previous utterance
+        window.speechSynthesis.cancel();
+        let utter = new SpeechSynthesisUtterance(text);
+        // ensure we have voices loaded
+        let voices = window.speechSynthesis.getVoices();
+        if (!voices.length) {
+            // voices might load asynchronously
+            window.speechSynthesis.addEventListener('voiceschanged', () => {
+                voices = window.speechSynthesis.getVoices();
+                if (voices.length) {
+                    utter.voice = voices[0];
+                    setDebug('using voice ' + utter.voice.name);
+                    window.speechSynthesis.speak(utter);
+                }
+            });
+            setDebug('voices loading...');
+        } else {
+            utter.voice = voices[0];
+            setDebug('using voice ' + utter.voice.name);
+            window.speechSynthesis.speak(utter);
+        }
+        utter.onstart = () => setDebug('speech started');
+        utter.onend = () => setDebug('speech ended');
+        utter.onerror = (e) => setDebug('speech error ' + e.error);
+    }
+
     function stopAnimation() {
         animating = false;
         bars.forEach(bar => bar.style.height = '20px');
@@ -172,10 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const spec = overlay.querySelector('.overlay-spectrogram');
                     if (spec) spec.style.display = 'none';
                     // speak it aloud
-                    if ('speechSynthesis' in window) {
-                        const utter = new SpeechSynthesisUtterance(data.text);
-                        window.speechSynthesis.speak(utter);
-                    }
+                    speakText(data.text);
                 } else if (data.error) {
                     outputEl.textContent = 'Error: ' + data.error;
                 } else {
