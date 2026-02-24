@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
             updateSelection();
             event.preventDefault();
-        } else if (event.key === 'Enter') {
+        } else if (event.key === 'ArrowRight') {
+            // right-arrow now acts as selection trigger
             const selectedItem = menuItems[selectedIndex];
             const command = selectedItem.getAttribute('data-command');
             runCommand(command);

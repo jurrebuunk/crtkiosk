@@ -168,6 +168,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if (data.text) {
                     outputEl.textContent = data.text;
+                    // hide bars/animation now that we have an answer
+                    const spec = overlay.querySelector('.overlay-spectrogram');
+                    if (spec) spec.style.display = 'none';
+                    // speak it aloud
+                    if ('speechSynthesis' in window) {
+                        const utter = new SpeechSynthesisUtterance(data.text);
+                        window.speechSynthesis.speak(utter);
+                    }
                 } else if (data.error) {
                     outputEl.textContent = 'Error: ' + data.error;
                 } else {
@@ -186,6 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('hidden');
         animationMode = 'listening';
         outputEl.textContent = '';
+        // make sure bars are visible when opened
+        const spec = overlay.querySelector('.overlay-spectrogram');
+        if (spec) spec.style.display = 'flex';
         startListening();
         startAnimation();
     }
@@ -208,8 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.addEventListener('keydown', function (e) {
-        // Alt+Space triggers overlay
-        if (e.altKey && e.code === 'Space') {
+        // Enter triggers overlay instead of alt+space
+        if (e.key === 'Enter') {
             e.preventDefault();
             toggleOverlay();
         }
